@@ -1,0 +1,48 @@
+/* Smooth transitions */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode (default) */
+body {
+  background-color: #f9fafb; /* gray-100 */
+  color: #1f2937;           /* gray-800 */
+}
+
+/* Dark mode body */
+body.dark-mode {
+  background-color: #1a202c; /* gray-900 */
+  color: #f9fafb;            /* gray-100 */
+}
+
+body.dark-mode .bg-white,
+body.dark-mode .bg-gray-100,
+body.dark-mode .max-w-md,
+body.dark-mode .max-w-3xl {
+  background-color: #2d3748 !important; /* gray-800 */
+  color: #f9fafb !important;
+  border-color: #4a5568 !important;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #4a5568 !important; /* gray-700 */
+  color: #f9fafb !important;
+  border: 1px solid #718096 !important;
+}
+
+body.dark-mode .bg-blue-600,
+body.dark-mode .bg-green-500,
+body.dark-mode .bg-red-500 {
+  filter: brightness(0.9) !important;
+}
+
+body.dark-mode #navbar {
+  background-color: #2b6cb0 !important; /* blue-700 */
+}
+
+body.dark-mode .text-gray-600 {
+  color: #cbd5e0 !important; /* gray-400 */
+}
+

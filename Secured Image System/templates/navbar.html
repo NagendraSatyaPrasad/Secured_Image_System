@@ -1,0 +1,17 @@
+<nav id="navbar" class="bg-blue-600 text-white p-4 flex justify-between items-center">
+  <a href="{{ url_for('dashboard') }}" class="text-xl font-bold">Image Security</a>
+  <div class="space-x-4 flex items-center">
+    <button id="darkModeToggle"
+            class="px-3 py-1 rounded bg-white text-black font-semibold transition">
+      🌙 Dark Mode
+    </button>
+    {% if session.get('user') %}
+      <a href="{{ url_for('auth.logout') }}"
+         class="px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white font-semibold">
+        Logout
+      </a>
+    {% endif %}
+  </div>
+</nav>
+
+

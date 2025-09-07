@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Files</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body id="pageBody" class="bg-gray-100 text-gray-800 min-h-screen transition-colors duration-300">
+
+  {% include 'navbar.html' %}
+
+  <div class="max-w-3xl mx-auto mt-12 bg-white dark:bg-gray-900 dark:text-gray-100 p-8 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold mb-6 text-center">Available Files</h1>
+
+    {% if files %}
+      <ul class="space-y-3">
+        {% for file in files %}
+          <li class="flex justify-between items-center bg-gray-100 dark:bg-gray-800 p-3 rounded">
+            <span>{{ file }}</span>
+            <a href="{{ url_for('download', file_type='decrypted', filename=file) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Download</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-center text-gray-600 dark:text-gray-400">No files available.</p>
+    {% endif %}
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
