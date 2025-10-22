@@ -14,19 +14,22 @@ def init_db():
         )
     """)
 
-    # 🆕 Create uploads table with category column
+    # Create uploads table with category, decrypted_history, file_hash, decrypted_at
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS uploads (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             filename TEXT NOT NULL,
-            category TEXT NOT NULL
+            category TEXT NOT NULL,
+            decrypted_history TEXT DEFAULT '',
+            file_hash TEXT DEFAULT '',
+            decrypted_at TEXT
         )
     """)
 
     conn.commit()
     conn.close()
+    print("Database initialized successfully!")
 
 if __name__ == "__main__":
     init_db()
-    print("Database initialized successfully!")
