@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload File</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Upload & Encrypt</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body id="pageBody" class="bg-gray-100 text-gray-800 min-h-screen transition-colors duration-300">
+<body class="bg-gray-100 text-gray-800 min-h-screen transition-colors duration-300">
 
   {% include 'navbar.html' %}
 
-  <div class="max-w-lg mx-auto mt-12 bg-white dark:bg-gray-900 dark:text-gray-100 p-8 rounded-lg shadow-lg">
-    <h1 class="text-2xl font-bold mb-6 text-center">Upload a File</h1>
+  <div class="max-w-md mx-auto mt-16 bg-white text-gray-800 p-8 rounded-2xl shadow-xl border border-gray-200">
+    <h1 class="text-2xl font-bold mb-6 text-center">Upload a File to Encrypt</h1>
     <form action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
       <input type="file" name="file" required class="w-full p-2 border rounded">
-      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Upload & Encrypt</button>
+      <input type="text" name="category" placeholder="Category (optional, default: General)" class="w-full p-2 border rounded" />
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
+        Upload & Encrypt
+      </button>
     </form>
   </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
-
-
