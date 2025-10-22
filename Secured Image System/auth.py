@@ -45,9 +45,11 @@ def login():
         user = cursor.fetchone()
         conn.close()
 
+        # user: (id, username, password_hash)
         if user and check_password_hash(user[2], password):
-            session["user"] = user[1]  # Store username in session
-            session["key"] = password.encode()  # Store password as key for encryption
+            session["user"] = user[1]        # username
+            session["user_id"] = user[0]     # id
+            session["key"] = password.encode()  # key (bytes) used for encryption
             flash("Login successful!", "success")
             return redirect(url_for("index"))
         else:
@@ -58,6 +60,8 @@ def login():
 @auth_bp.route("/logout")
 def logout():
     session.pop("user", None)
-    session.pop("key", None)  # Also pop the encryption key from the session
+    session.pop("user_id", None)
+    session.pop("key", None)
     flash("Logged out successfully.", "info")
     return redirect(url_for("auth.login"))
+
