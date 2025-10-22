@@ -1,17 +1,30 @@
-<nav id="navbar" class="bg-blue-600 text-white p-4 flex justify-between items-center">
-  <a href="{{ url_for('dashboard') }}" class="text-xl font-bold">Image Security</a>
-  <div class="space-x-4 flex items-center">
-    <button id="darkModeToggle"
-            class="px-3 py-1 rounded bg-white text-black font-semibold transition">
-      🌙 Dark Mode
-    </button>
-    {% if session.get('user') %}
-      <a href="{{ url_for('auth.logout') }}"
-         class="px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white font-semibold">
+<nav id="navbar" class="bg-blue-600 text-white p-4 flex items-center shadow-md">
+  <!-- Logo on the left -->
+  <a href="{{ url_for('index') }}" class="text-xl font-bold">🔒 SecureVault</a>
+
+  {% if session.get('user') %}
+    <!-- Centered nav links -->
+    <div class="flex-1 flex justify-center space-x-6">
+      <a href="{{ url_for('index') }}" class="hover:text-gray-200 font-semibold">Upload Files</a>
+      <a href="{{ url_for('dashboard') }}" class="hover:text-gray-200 font-semibold">Encrypted Images</a>
+      <a href="{{ url_for('decrypt') }}" class="hover:text-gray-200 font-semibold">Decrypt Image</a>
+      <a href="{{ url_for('history') }}" class="hover:text-gray-200 font-semibold">History</a>
+    </div>
+
+    <!-- Logout button on the right -->
+    <div class="ml-auto">
+      <a id="logoutButton" href="{{ url_for('auth.logout') }}" 
+         class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded font-semibold">
         Logout
       </a>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </nav>
-
-
+<script>
+  // Confirm logout
+  document.getElementById('logoutButton')?.addEventListener('click', function(event) {
+    if (!confirm('Are you sure you want to logout?')) {
+      event.preventDefault();
+    }
+  });
+</script>
